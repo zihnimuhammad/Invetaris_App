@@ -184,40 +184,40 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="35dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Lihat \nKelas"
+                            android:text="Lihat Daftar \nKelas"
                             android:textColor="#fff"
                             android:textSize="13sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </GridLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="Tugas Selesai Terbaru"
-                android:textColor="#1C1B4B"
-                android:textSize="15sp" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:fontFamily="@font/montserrat_semibold"-->
+<!--                android:text="Tugas Selesai Terbaru"-->
+<!--                android:textColor="#1C1B4B"-->
+<!--                android:textSize="15sp" />-->
 
-            <com.bahrijar.invetarisapp.activity.EmptyRecyclerView
-                android:visibility="gone"
-                android:id="@+id/rv_newtaskfinished"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                tools:listitem="@layout/item_task_finished" />
+<!--            <com.bahrijar.invetarisapp.activity.EmptyRecyclerView-->
+<!--                android:visibility="gone"-->
+<!--                android:id="@+id/rv_newtaskfinished"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                tools:listitem="@layout/item_task_finished" />-->
 
-            <TextView
-                android:id="@+id/empty_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tidak ada."
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/montserrat_light"
-                android:layout_marginTop="10dp"
-                android:textSize="13sp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/empty_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Tidak ada."-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:fontFamily="@font/montserrat_light"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:textSize="13sp"/>-->
 
         </LinearLayout>
 
