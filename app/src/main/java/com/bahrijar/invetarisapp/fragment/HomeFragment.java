@@ -44,9 +44,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        rvData = view.findViewById(R.id.rv_newtaskfinished);
-
-        rvData.setEmptyView(view.findViewById(R.id.empty_view));
+//        rvData = view.findViewById(R.id.rv_newtaskfinished);
+//
+//        rvData.setEmptyView(view.findViewById(R.id.empty_view));
 
         taskAssigned = view.findViewById(R.id.cv_assigned);
         taskFinished = view.findViewById(R.id.cv_finished);
@@ -63,15 +63,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         //Add List Data Selesai terbaru
         listTask.addAll(TaskData.getListTaskData());
-        showRecyclerNewTaskFinished();
+//        showRecyclerNewTaskFinished();
         return view;
     }
 
-    private void showRecyclerNewTaskFinished() {
-        rvData.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        rvData.setItemAnimator(new DefaultItemAnimator());
-        rvData.setAdapter(mAdapter);
-    }
+//    private void showRecyclerNewTaskFinished() {
+//        rvData.setLayoutManager(new LinearLayoutManager(this.getContext()));
+//        rvData.setItemAnimator(new DefaultItemAnimator());
+//        rvData.setAdapter(mAdapter);
+//    }
 
     @Override
     public void onClick(View view) {
