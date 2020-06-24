@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "209780784871",
+    "firebase_url": "https://invetaris-app.firebaseio.com",
+    "project_id": "invetaris-app",
+    "storage_bucket": "invetaris-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209780784871:android:eff48f1c66c654763c2c42",
+        "android_client_info": {
+          "package_name": "com.bahrijar.invetarisapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209780784871-f2rqcb4b3b7ne55bjo3vakucj217k0fh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF7ltwB6sWmvv1j6MMxWiro9jE58oSIKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209780784871-f2rqcb4b3b7ne55bjo3vakucj217k0fh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
