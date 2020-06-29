@@ -54,7 +54,7 @@ public class BarangAdapter extends RecyclerView.Adapter<BarangAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNamaBarang = itemView.findViewById(R.id.nama_barang);
-            tvJumlah = itemView.findViewById(R.id.lokasi_kelas);
+            tvJumlah = itemView.findViewById(R.id.jumlah_barang);
 
         }
 

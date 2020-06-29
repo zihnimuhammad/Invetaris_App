@@ -24,7 +24,7 @@ import java.util.List;
 
 public class KelasAdapter extends EmptyRecyclerView.Adapter<KelasAdapter.ViewHolder> {
 
-List<Kelas> listKelas;
+    List<Kelas> listKelas;
     Context context;
 
     public KelasAdapter(Context context, List<Kelas> listKelas) {
@@ -66,7 +66,7 @@ List<Kelas> listKelas;
 
     @Override
     public int getItemCount() {
-        if(listKelas != null){
+        if (listKelas != null) {
             return listKelas.size();
         }
         return 0;
@@ -89,14 +89,11 @@ List<Kelas> listKelas;
         public void onClick(View view) {
             int position = getAdapterPosition();
             Kelas kelas = listKelas.get(position);
-            ArrayList<Barang> barang = new ArrayList<>();
+            ArrayList<Barang> barang = kelas.getBarang();
             Intent i = new Intent(view.getContext(), DetailKelasActivity.class);
             i.putExtra(DetailKelasActivity.EXTRA_KELAS, kelas);
             i.putParcelableArrayListExtra(DetailKelasActivity.EXTRA_BARANG, barang);
-//            i.putExtra("id", kelas.getId());
             view.getContext().startActivity(i);
-
-
         }
     }
 }

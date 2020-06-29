@@ -63,7 +63,7 @@ public class DetailKelasActivity extends AppCompatActivity implements View.OnCli
     private void initViews() {
         tvKelas = findViewById(R.id.nama_kelas);
         tvLokasi = findViewById(R.id.lokasi_kelas);
-        rvBarang= findViewById(R.id.rv_kelas);
+        rvBarang= findViewById(R.id.rv_barang);
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
 
@@ -79,29 +79,20 @@ public class DetailKelasActivity extends AppCompatActivity implements View.OnCli
         tvKelas.setText(namaKelas);
         tvLokasi.setText(lokasi);
 
-        ArrayList<Barang> barang = i.getParcelableArrayListExtra(EXTRA_BARANG);
-//        barang = kelas.getBarang();
-        barang = kelas.getBarang();
-        assert barang != null;
-        Log.d(TAG, "Barang: " + barang.get(0).getNamabarang());
+        ArrayList<Barang> barangList = i.getParcelableArrayListExtra(EXTRA_BARANG);
+        assert barangList != null;
+        Log.d(TAG, "Barang: " + barangList.get(0).getNamabarang());
 
 
-
-
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        rvBarang.setLayoutManager(layoutManager);
-//        adapter= new BarangAdapter(getApplicationContext(),barangList);
-//        adapter.setListBarang(barangList);
-//        rvBarang.setAdapter(adapter);
-
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        rvBarang.setLayoutManager(layoutManager);
+        adapter= new BarangAdapter(getApplicationContext(),barangList);
+        adapter.setListBarang(barangList);
+        rvBarang.setAdapter(adapter);
 
 //
 //        ArrayList<Barang> barangs = i.getParcelableArrayListExtra("EXTRA_BARANG");
 //        barangs.addAll(barangList);
-
-
-
 
 
         }
