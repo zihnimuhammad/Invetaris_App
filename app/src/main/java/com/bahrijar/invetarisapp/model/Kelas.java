@@ -14,7 +14,7 @@ public class Kelas implements Parcelable {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("nama_kelas")
+    @SerializedName("kode_ruangan")
     @Expose
     private String namaKelas;
     @SerializedName("lokasi")
@@ -24,7 +24,7 @@ public class Kelas implements Parcelable {
     @Expose
     private String kapasitas;
 
-    @SerializedName("barang")
+    @SerializedName("barang_ruangan")
     @Expose
     private ArrayList<Barang> barang = null;
 

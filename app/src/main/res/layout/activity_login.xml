@@ -78,6 +78,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_layout_password"
+                app:passwordToggleEnabled="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -88,6 +89,7 @@
                     android:id="@+id/edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    app:passwordToggleEnabled="true"
                     android:background="@drawable/bg_input_edit"
                     android:fontFamily="@font/montserrat_medium"
                     android:inputType="textPassword"

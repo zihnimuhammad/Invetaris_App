@@ -10,14 +10,18 @@ import android.view.MenuItem;
 import com.bahrijar.invetarisapp.R;
 import com.bahrijar.invetarisapp.fragment.AccountFragment;
 import com.bahrijar.invetarisapp.fragment.HomeFragment;
+import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPrefManager = new SharedPrefManager(this);
 
         BottomNavigationView mNavigation = findViewById(R.id.nav_view);
         mNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

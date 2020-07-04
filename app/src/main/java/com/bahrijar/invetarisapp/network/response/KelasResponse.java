@@ -31,7 +31,7 @@ import java.util.List;
 public class KelasResponse{
 
 
-    @SerializedName("kelas")
+    @SerializedName("classes")
     @Expose
     private List<Kelas> kelas = null;
 

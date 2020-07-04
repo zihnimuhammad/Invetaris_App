@@ -19,6 +19,7 @@ import com.bahrijar.invetarisapp.model.Kelas;
 import com.bahrijar.invetarisapp.network.ServiceGenerator;
 import com.bahrijar.invetarisapp.network.response.KelasResponse;
 import com.bahrijar.invetarisapp.network.service.ApiInterface;
+import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,7 @@ import retrofit2.Response;
 public class DaftarKelasActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "DaftarKelasActivity";
+    SharedPrefManager sharedPrefManager;
 
     ImageButton btn_back;
 
@@ -48,6 +50,7 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_kelas);
+        sharedPrefManager = new SharedPrefManager(this);
 
         initViews();
         loadData();
@@ -81,7 +84,7 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
 
 
     private void loadData() {
-        apiInterface.getClasses().enqueue(new Callback<KelasResponse>() {
+        apiInterface.getClasses(sharedPrefManager.getSPToken()).enqueue(new Callback<KelasResponse>() {
             @Override
             public void onResponse(Call<KelasResponse> call, Response<KelasResponse> response) {
                 if (response.code() == 200) {

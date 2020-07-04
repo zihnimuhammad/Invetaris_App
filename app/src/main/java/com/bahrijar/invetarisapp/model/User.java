@@ -1,62 +1,109 @@
 package com.bahrijar.invetarisapp.model;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
-    private String userId ;
-    private String usernip;
-    private String userpassword;
-    private String username;
-    private String userrole;
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("no_induk")
+    @Expose
+    private String noInduk;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("email_verified_at")
+    @Expose
+    private Object emailVerifiedAt;
+    @SerializedName("role")
+    @Expose
+    private String role;
+    @SerializedName("deleted_at")
+    @Expose
+    private Object deletedAt;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
-    public User() {
+    public Integer getId() {
+        return id;
     }
 
-    public User(String userId, String usernip, String userpassword, String username, String userrole) {
-        this.userId = userId;
-        this.usernip = usernip;
-        this.userpassword = userpassword;
-        this.username = username;
-        this.userrole = userrole;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getNoInduk() {
+        return noInduk;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setNoInduk(String noInduk) {
+        this.noInduk = noInduk;
     }
 
-    public String getUsernip() {
-        return usernip;
+    public String getName() {
+        return name;
     }
 
-    public void setUsernip(String usernip) {
-        this.usernip = usernip;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserpassword() {
-        return userpassword;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public Object getEmailVerifiedAt() {
+        return emailVerifiedAt;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmailVerifiedAt(Object emailVerifiedAt) {
+        this.emailVerifiedAt = emailVerifiedAt;
     }
 
-    public String getUserrole() {
-        return userrole;
+    public String getRole() {
+        return role;
     }
 
-    public void setUserrole(String userrole) {
-        this.userrole = userrole;
+    public void setRole(String role) {
+        this.role = role;
     }
+
+    public Object getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Object deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
 }

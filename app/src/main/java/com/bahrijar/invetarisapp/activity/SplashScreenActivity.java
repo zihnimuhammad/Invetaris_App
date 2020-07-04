@@ -1,5 +1,6 @@
 package com.bahrijar.invetarisapp.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
 import com.bahrijar.invetarisapp.R;
+import com.bahrijar.invetarisapp.activity.petugas.MainPetugasActivity;
+import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     ImageView iv_splash;
 
     Handler handler;
+    Context mContext;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,15 +46,19 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Run Animasi
         iv_splash.startAnimation(splash);
 
+        sharedPrefManager = new SharedPrefManager(this);
+
         // Set Timer 2 detik
         handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 Intent next = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(SplashScreenActivity.this,
                         iv_splash, "iv_transition");
                 startActivity(next, optionsCompat.toBundle());
+
             }
         }, 1000); // 2000 ms
     }

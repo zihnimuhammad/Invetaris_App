@@ -1,8 +1,12 @@
 package com.bahrijar.invetarisapp.activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.transition.Fade;
@@ -10,25 +14,28 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bahrijar.invetarisapp.R;
+import com.bahrijar.invetarisapp.activity.petugas.MainPetugasActivity;
 import com.bahrijar.invetarisapp.model.User;
+import com.bahrijar.invetarisapp.network.ServiceGenerator;
+import com.bahrijar.invetarisapp.network.response.UserResponse;
+import com.bahrijar.invetarisapp.network.service.ApiInterface;
+import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -38,10 +45,15 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText vNip, vPassword;
 
     private TextInputLayout txtLayoutNip, txtLayoutPassword;
+    ApiInterface apiInterface;
+
+    private ProgressDialog dialog;
+
+    SharedPrefManager sharedPrefManager;
 
     Handler handler;
     Runnable runnable;
-
+    Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,16 +61,27 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
+        sharedPrefManager = new SharedPrefManager(this);
+        if (sharedPrefManager.getSPSudahLogin()) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+            }
+        }
 
-    }
 
     private void init() {
+        mContext = this;
         form_login = findViewById(R.id.form_login);
         vBtnLogin = findViewById(R.id.btn_login);
         vNip = findViewById(R.id.edt_nip);
         vPassword = findViewById(R.id.edt_password);
         txtLayoutNip = findViewById(R.id.txt_layout_nip);
         txtLayoutPassword = findViewById(R.id.txt_layout_password);
+
+        dialog = new ProgressDialog(LoginActivity.this);
+        dialog.setCancelable(false);
+
 
         // Load Animations
         bottom_to_top = AnimationUtils.loadAnimation(this, R.anim.bottom_to_top);
@@ -77,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (validate()) {
-
+                    login();
                 }
 //                finishAffinity();
 
@@ -110,8 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                         if (!vPassword.getText().toString().isEmpty()) {
                             txtLayoutPassword.setErrorEnabled(false);
-                        }
-                        else if (vPassword.getText().toString().length() > 7) {
+                        } else if (vPassword.getText().toString().length() > 7) {
                             txtLayoutPassword.setErrorEnabled(false);
                         }
 
@@ -133,23 +155,75 @@ public class LoginActivity extends AppCompatActivity {
             txtLayoutNip.setErrorEnabled(true);
             txtLayoutNip.setError("Nip tidak boleh kosong");
             return false;
-        }
-       else if (vPassword.getText().toString().isEmpty()) {
+        } else if (vPassword.getText().toString().isEmpty()) {
             txtLayoutPassword.setErrorEnabled(true);
             txtLayoutPassword.setError("Password tidak boleh kosong");
             return false;
-        }
-        else if (vPassword.getText().toString().length() < 8) {
+        } else if (vPassword.getText().toString().length() < 8) {
             txtLayoutPassword.setErrorEnabled(true);
             txtLayoutPassword.setError("Password minimal 8 karakter");
             return false;
 
-        } else  {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
         }
         return true;
+    }
+
+    private void login() {
+        dialog.setMessage("Logging in");
+        dialog.show();
+
+        apiInterface = ServiceGenerator.createBaseService(this, ApiInterface.class);
+        apiInterface.loginRequest(vNip.getText().toString(), vPassword.getText().toString()).enqueue(new Callback<UserResponse>() {
+
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                try {
+
+                    if (response.code() == 200) {
+                        User user = response.body().getUser();
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ROLE, user.getName());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getRole());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, "Bearer " + response.body().getToken());
+                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+
+                        if (user.getRole().equals("mahasiswa")) {
+                            startActivity(new Intent(mContext, MainActivity.class)
+                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            finish();
+
+                        } else if(user.getRole().equals("admin")) {
+                            startActivity(new Intent(mContext, MainPetugasActivity.class)
+                                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                            finish();
+                        }
+
+                    } else {
+                        Toast.makeText(mContext, "No Induk/Password salah", Toast.LENGTH_SHORT).show();
+                    }
+
+//                    JSONObject object = new JSONObject(response.body().toString());
+//                    JSONObject user = object.getJSONObject("user");
+//                    //Shared Preferences
+//
+//                    SharedPreferences userPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+//                    SharedPreferences.Editor editor = userPref.edit();
+//                    editor.putString("token", object.getString("token"));
+//                    editor.putString("name", user.getString("name"));
+//                    editor.putString("role", user.getString("role"));
+//
+//                    Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
     }
 
 

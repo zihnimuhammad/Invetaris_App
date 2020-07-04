@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,22 +16,29 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bahrijar.invetarisapp.activity.DaftarKelasActivity;
+import com.bahrijar.invetarisapp.activity.DetailKelasActivity;
 import com.bahrijar.invetarisapp.activity.EmptyRecyclerView;
 import com.bahrijar.invetarisapp.R;
 import com.bahrijar.invetarisapp.model.Task;
 import com.bahrijar.invetarisapp.activity.TaskAssignedActivity;
 import com.bahrijar.invetarisapp.TaskData;
 import com.bahrijar.invetarisapp.adapter.TaskFinishedAdapter;
+import com.bahrijar.invetarisapp.network.service.ApiInterface;
+import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
+    SharedPrefManager sharedPrefManager;
     private Handler mHandler;
 
     private CardView taskAssigned, taskFinished, vKelas;
+    private TextView tvName, tvRole;
+
     private ArrayList<Task> listTask = new ArrayList<>();
     private TaskFinishedAdapter mAdapter;
     EmptyRecyclerView rvData;
+    ApiInterface apiInterface;
 
     private Runnable updateAdapterRunnable = new Runnable() {
         @Override
@@ -47,10 +55,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 //        rvData = view.findViewById(R.id.rv_newtaskfinished);
 //
 //        rvData.setEmptyView(view.findViewById(R.id.empty_view));
+        sharedPrefManager = new SharedPrefManager(view.getContext());
 
         taskAssigned = view.findViewById(R.id.cv_assigned);
         taskFinished = view.findViewById(R.id.cv_finished);
         vKelas = view.findViewById(R.id.cv_kelas);
+
+        tvName = view.findViewById(R.id.tv_name);
+        tvRole = view.findViewById(R.id.tv_role);
+
+        // Set Text pake shared preferences
+        tvName.setText(sharedPrefManager.getSPNama());
+        tvRole.setText(sharedPrefManager.getSPRole());
 
         mAdapter = new TaskFinishedAdapter(listTask);
 
@@ -77,8 +93,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cv_assigned:
-                Intent i = new Intent(getActivity(), TaskAssignedActivity.class);
-                startActivity(i);
+                sharedPrefManager.getSPToken();
+                startActivity(new Intent(getActivity(), DetailKelasActivity.class));
                 break;
             case R.id.cv_kelas:
                 Intent j = new Intent(getActivity(), DaftarKelasActivity.class);
@@ -86,6 +102,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
 
     @Override
     public void onResume() {

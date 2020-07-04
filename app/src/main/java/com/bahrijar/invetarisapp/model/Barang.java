@@ -16,7 +16,7 @@ public class Barang implements Parcelable {
     @SerializedName("id_kelas")
     @Expose
     private String idKelas;
-    @SerializedName("namabarang")
+    @SerializedName("nama_barang")
     @Expose
     private String namabarang;
     @SerializedName("kondisi")
