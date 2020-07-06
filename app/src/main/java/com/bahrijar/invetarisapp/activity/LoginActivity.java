@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bahrijar.invetarisapp.R;
+import com.bahrijar.invetarisapp.activity.mahasiswa.MainActivity;
 import com.bahrijar.invetarisapp.activity.petugas.MainPetugasActivity;
 import com.bahrijar.invetarisapp.model.User;
 import com.bahrijar.invetarisapp.network.ServiceGenerator;
@@ -39,10 +41,11 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Animation bottom_to_top;
+    Animation bottom_to_top, login;
     ConstraintLayout form_login;
     Button vBtnLogin;
     private TextInputEditText vNip, vPassword;
+    ImageView iv_login;
 
     private TextInputLayout txtLayoutNip, txtLayoutPassword;
     ApiInterface apiInterface;
@@ -62,15 +65,26 @@ public class LoginActivity extends AppCompatActivity {
 
         init();
         sharedPrefManager = new SharedPrefManager(this);
+
         if (sharedPrefManager.getSPSudahLogin()) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class)
+            if (sharedPrefManager.getSPRole().equals("mahasiswa")) {
+                startActivity(new Intent(LoginActivity.this, com.bahrijar.invetarisapp.activity.mahasiswa.MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-            finish();
+                finish();
+            } else if (sharedPrefManager.getSPRole().equals("petugas")) {
+                startActivity(new Intent(LoginActivity.this, com.bahrijar.invetarisapp.activity.MainActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
             }
+
         }
 
 
+    }
+
+
     private void init() {
+        // Load Views
         mContext = this;
         form_login = findViewById(R.id.form_login);
         vBtnLogin = findViewById(R.id.btn_login);
@@ -79,12 +93,15 @@ public class LoginActivity extends AppCompatActivity {
         txtLayoutNip = findViewById(R.id.txt_layout_nip);
         txtLayoutPassword = findViewById(R.id.txt_layout_password);
 
+        iv_login = findViewById(R.id.iv_login);
+
         dialog = new ProgressDialog(LoginActivity.this);
         dialog.setCancelable(false);
 
 
         // Load Animations
         bottom_to_top = AnimationUtils.loadAnimation(this, R.anim.bottom_to_top);
+        login = AnimationUtils.loadAnimation(this, R.anim.login);
 
         Fade fade = new Fade();
         fade.excludeTarget(android.R.id.statusBarBackground, true);
@@ -153,7 +170,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validate() {
         if (vNip.getText().toString().isEmpty()) {
             txtLayoutNip.setErrorEnabled(true);
-            txtLayoutNip.setError("Nip tidak boleh kosong");
+            txtLayoutNip.setError("Nomor Induk tidak boleh kosong");
             return false;
         } else if (vPassword.getText().toString().isEmpty()) {
             txtLayoutPassword.setErrorEnabled(true);
@@ -181,8 +198,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (response.code() == 200) {
                         User user = response.body().getUser();
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ROLE, user.getName());
-                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getRole());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getName());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_ROLE, user.getRole());
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, "Bearer " + response.body().getToken());
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
 
@@ -191,8 +208,8 @@ public class LoginActivity extends AppCompatActivity {
                                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                             finish();
 
-                        } else if(user.getRole().equals("admin")) {
-                            startActivity(new Intent(mContext, MainPetugasActivity.class)
+                        } else if (user.getRole().equals("petugas")) {
+                            startActivity(new Intent(mContext, com.bahrijar.invetarisapp.activity.MainActivity.class)
                                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                             finish();
                         }
@@ -200,18 +217,6 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(mContext, "No Induk/Password salah", Toast.LENGTH_SHORT).show();
                     }
-
-//                    JSONObject object = new JSONObject(response.body().toString());
-//                    JSONObject user = object.getJSONObject("user");
-//                    //Shared Preferences
-//
-//                    SharedPreferences userPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
-//                    SharedPreferences.Editor editor = userPref.edit();
-//                    editor.putString("token", object.getString("token"));
-//                    editor.putString("name", user.getString("name"));
-//                    editor.putString("role", user.getString("role"));
-//
-//                    Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
 
                 } catch (Exception e) {
                     e.printStackTrace();

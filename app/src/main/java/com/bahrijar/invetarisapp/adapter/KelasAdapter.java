@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bahrijar.invetarisapp.R;
-import com.bahrijar.invetarisapp.activity.DetailKelasActivity;
 import com.bahrijar.invetarisapp.activity.EmptyRecyclerView;
 import com.bahrijar.invetarisapp.activity.MainActivity;
+import com.bahrijar.invetarisapp.activity.mahasiswa.DetailKelasActivity;
 import com.bahrijar.invetarisapp.model.Barang;
 import com.bahrijar.invetarisapp.model.Kelas;
 
@@ -90,8 +90,8 @@ public class KelasAdapter extends EmptyRecyclerView.Adapter<KelasAdapter.ViewHol
             int position = getAdapterPosition();
             Kelas kelas = listKelas.get(position);
             ArrayList<Barang> barang = kelas.getBarang();
-            Intent i = new Intent(view.getContext(), DetailKelasActivity.class);
-            i.putExtra(DetailKelasActivity.EXTRA_KELAS, kelas);
+            Intent i = new Intent(view.getContext(), com.bahrijar.invetarisapp.activity.mahasiswa.DetailKelasActivity.class);
+            i.putExtra(com.bahrijar.invetarisapp.activity.mahasiswa.DetailKelasActivity.EXTRA_KELAS, kelas);
             i.putParcelableArrayListExtra(DetailKelasActivity.EXTRA_BARANG, barang);
             view.getContext().startActivity(i);
         }

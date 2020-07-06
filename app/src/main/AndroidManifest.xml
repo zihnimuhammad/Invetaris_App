@@ -21,10 +21,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.noActionBar">
-        <activity android:name=".activity.DetailKelasActivity"></activity>
-        <activity android:name=".activity.petugas.MainPetugasActivity"></activity>
+
+        <!--Mahasiswa -->
+        <activity android:name=".activity.mahasiswa.MainActivity" />
+        <activity android:name=".activity.mahasiswa.DaftarKelasActivity" />
+        <activity android:name=".activity.mahasiswa.DetailKelasActivity" />
+
+        <!-- Petugas-->
+        <activity android:name=".activity.petugas.MainPetugasActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.DaftarKelasActivity" />
+
         <activity
             android:name=".activity.TaskAssignedActivity"
             android:label="" />

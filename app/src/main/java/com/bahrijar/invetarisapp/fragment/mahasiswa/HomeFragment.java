@@ -1,4 +1,4 @@
-package com.bahrijar.invetarisapp.fragment;
+package com.bahrijar.invetarisapp.fragment.mahasiswa;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,19 +6,19 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.bahrijar.invetarisapp.activity.DaftarKelasActivity;
-import com.bahrijar.invetarisapp.activity.DetailKelasActivity;
-import com.bahrijar.invetarisapp.activity.EmptyRecyclerView;
 import com.bahrijar.invetarisapp.R;
-import com.bahrijar.invetarisapp.model.Task;
+import com.bahrijar.invetarisapp.activity.DaftarKelasActivity;
+import com.bahrijar.invetarisapp.activity.EmptyRecyclerView;
 import com.bahrijar.invetarisapp.adapter.TaskFinishedAdapter;
+import com.bahrijar.invetarisapp.model.Task;
 import com.bahrijar.invetarisapp.network.service.ApiInterface;
 import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 
@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     SharedPrefManager sharedPrefManager;
     private Handler mHandler;
 
-    private CardView taskAssigned, taskFinished, vKelas;
+    private ImageButton btnDaftarKelas, btnPinjamBarang;
     private TextView tvName, tvRole;
 
     private ArrayList<Task> listTask = new ArrayList<>();
@@ -47,15 +47,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home_mhs, container, false);
 //        rvData = view.findViewById(R.id.rv_newtaskfinished);
 //
 //        rvData.setEmptyView(view.findViewById(R.id.empty_view));
         sharedPrefManager = new SharedPrefManager(view.getContext());
 
-        taskAssigned = view.findViewById(R.id.cv_assigned);
-        taskFinished = view.findViewById(R.id.cv_finished);
-        vKelas = view.findViewById(R.id.cv_kelas);
+        btnDaftarKelas = view.findViewById(R.id.btn_daftar_kelas);
+        btnPinjamBarang = view.findViewById(R.id.btn_pinjam_barang);
 
         tvName = view.findViewById(R.id.tv_name);
         tvRole = view.findViewById(R.id.tv_role);
@@ -64,17 +63,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         tvName.setText(sharedPrefManager.getSPNama());
         tvRole.setText(sharedPrefManager.getSPRole());
 
+
         mAdapter = new TaskFinishedAdapter(listTask);
 
         // Add Click Listener
-        taskAssigned.setOnClickListener(this);
-        taskFinished.setOnClickListener(this);
-        vKelas.setOnClickListener(this);
+        btnDaftarKelas.setOnClickListener(this);
+        btnPinjamBarang.setOnClickListener(this);
+
 
         mHandler = new Handler();
-
-//        //Add List Data Selesai terbaru
-//        listTask.addAll(TaskData.getListTaskData());
 //        showRecyclerNewTaskFinished();
         return view;
     }
@@ -88,11 +85,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.cv_assigned:
+            case R.id.btn_daftar_kelas:
                 sharedPrefManager.getSPToken();
-                startActivity(new Intent(getActivity(), DetailKelasActivity.class));
+                startActivity(new Intent(getActivity(), com.bahrijar.invetarisapp.activity.mahasiswa.DaftarKelasActivity.class));
                 break;
-            case R.id.cv_kelas:
+            case R.id.btn_pinjam_barang:
                 Intent j = new Intent(getActivity(), DaftarKelasActivity.class);
                 startActivity(j);
                 break;

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bahrijar.invetarisapp.R;
-import com.bahrijar.invetarisapp.TaskData;
 import com.bahrijar.invetarisapp.adapter.TaskAssignedAdapter;
 import com.bahrijar.invetarisapp.model.Task;
 
@@ -53,7 +52,7 @@ public class TaskAssignedActivity extends AppCompatActivity implements View.OnCl
 
         mHandler = new Handler();
 
-        listTask.addAll(TaskData.getListTaskData());
+
         showRecyclerNewTaskFinished();
 
     }

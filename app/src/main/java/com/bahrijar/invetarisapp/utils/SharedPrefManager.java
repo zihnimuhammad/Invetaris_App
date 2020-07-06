@@ -12,6 +12,7 @@ public class SharedPrefManager {
     public static final String SP_TOKEN = "spToken";
     public static final String SP_NOINDUK= "spNoInduk";
     public static final String SP_ROLE= "spRole";
+    public static final String SP_KELAS= "spKelas";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
@@ -39,6 +40,10 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
+
+    public String getSPKelas(){
+        return sp.getString(SP_KELAS, "");
+    }
 
 
     public String getSPNama(){

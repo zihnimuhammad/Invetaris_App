@@ -45,7 +45,7 @@
                 </com.github.florent37.shapeofview.shapes.CircleView>
 
                 <TextView
-                    android:id="@+id/tv_role"
+                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
@@ -56,7 +56,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_role"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
