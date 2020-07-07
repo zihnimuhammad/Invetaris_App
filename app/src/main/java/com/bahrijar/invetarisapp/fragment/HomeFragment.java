@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private Handler mHandler;
 
     private CardView taskAssigned, taskFinished, vKelas;
-    private TextView tvName, tvRole;
+    TextView tvName, tvRole;
 
     private ArrayList<Task> listTask = new ArrayList<>();
     private TaskFinishedAdapter mAdapter;
@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         taskAssigned = view.findViewById(R.id.cv_assigned);
         taskFinished = view.findViewById(R.id.cv_finished);
-        vKelas = view.findViewById(R.id.cv_kelas);
+
 
         tvName = view.findViewById(R.id.tv_name);
         tvRole = view.findViewById(R.id.tv_role);
@@ -91,10 +91,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             case R.id.cv_assigned:
                 sharedPrefManager.getSPToken();
                 startActivity(new Intent(getActivity(), DetailKelasActivity.class));
-                break;
-            case R.id.cv_kelas:
-                Intent j = new Intent(getActivity(), DaftarKelasActivity.class);
-                startActivity(j);
                 break;
         }
     }

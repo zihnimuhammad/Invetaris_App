@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="90dp"
     android:layout_gravity="center"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="16dp"
@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
             android:padding="10dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +43,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Perbaikan Barang"
+                    android:layout_marginBottom="10dp"
+
                     android:textColor="#1C1B4B"
-                    android:textSize="13sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txt_location_task"
@@ -54,7 +56,7 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Ruang GSG 209"
                     android:textColor="#B8B8B8"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
 
@@ -69,7 +71,9 @@
             android:text="#LAP001"
             android:textColor="#FFA200"
             android:textSize="12sp"
+            android:drawableLeft="@drawable/ic_person_orange"
             card_view:layout_constraintBottom_toBottomOf="parent"
+            android:drawablePadding="5dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

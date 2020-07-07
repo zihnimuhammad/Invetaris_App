@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_noinduk"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Deskripsi"
+        android:textSize="15sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar_pinjam_barang"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@color/colorPrimary"
+            android:onClick="cancel"
+            android:src="@drawable/ic_arrow_back_white_24dp" />
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="0dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="Buat Laporan"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="10dp"
+        android:padding="16dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="Deskripsi"
+            android:layout_marginBottom="5dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/deskripsi_laporan"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@drawable/et_bg"
+            android:layout_marginRight="16dp"
+            android:inputType="text|textMultiLine"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="top"
+            android:textColor="#000"
+            android:hint="deskripsi kerusakan.."
+            android:padding="8dp"
+            android:imeOptions="actionDone"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_gambar"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:background="#C8C7C7"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:id="@+id/foto_kerusakan"
+            android:layout_width="300dp"
+            android:src="@drawable/ic_add_a_photo_24dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin">
+
+        <Button
+            android:id="@+id/btn_lapor"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_cyan_rounded"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Lapor"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -199,6 +199,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         User user = response.body().getUser();
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getName());
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NOINDUK, user.getNoInduk());
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_ROLE, user.getRole());
                         sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, "Bearer " + response.body().getToken());
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);

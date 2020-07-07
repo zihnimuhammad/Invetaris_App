@@ -1,9 +1,11 @@
 package com.bahrijar.invetarisapp.activity.mahasiswa;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,7 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
 
     ImageButton btn_back;
 
+    ProgressDialog dialog;
 
     private KelasAdapter adapter;
     ApiInterface apiInterface;
@@ -42,12 +45,14 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
     List<Kelas> kelasList = new ArrayList<>();
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_kelas);
         sharedPrefManager = new SharedPrefManager(this);
+
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
 
         initViews();
         loadData();
@@ -62,7 +67,7 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         rvKelas.setLayoutManager(layoutManager);
-        adapter= new KelasAdapter(getApplicationContext(),kelasList);
+        adapter = new KelasAdapter(getApplicationContext(), kelasList);
         rvKelas.setAdapter(adapter);
 
 
@@ -81,20 +86,29 @@ public class DaftarKelasActivity extends AppCompatActivity implements View.OnCli
 
 
     private void loadData() {
+        dialog.setMessage("Memuat Data..");
+        dialog.show();
+
         apiInterface.getClasses(sharedPrefManager.getSPToken()).enqueue(new Callback<KelasResponse>() {
             @Override
             public void onResponse(Call<KelasResponse> call, Response<KelasResponse> response) {
-                if (response.code() == 200) {
-                    assert response.body() != null;
-                    kelasList = response.body().getKelas();
-                    adapter.setListKelas(kelasList);
+                try {
+                    if (response.code() == 200) {
+                        assert response.body() != null;
+                        kelasList = response.body().getKelas();
+                        adapter.setListKelas(kelasList);
 
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+                dialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<KelasResponse> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
         });
     }

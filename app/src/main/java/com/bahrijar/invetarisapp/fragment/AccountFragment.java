@@ -1,5 +1,6 @@
 package com.bahrijar.invetarisapp.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,16 +18,22 @@ import com.bahrijar.invetarisapp.utils.SharedPrefManager;
 
 public class AccountFragment extends Fragment {
     SharedPrefManager sharedPrefManager;
-    private TextView tvLogout;
+   TextView tvLogout, tvName, tvNim;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+
         sharedPrefManager = new SharedPrefManager(view.getContext());
 
         tvLogout = view.findViewById(R.id.tv_logout);
+//        tvName = view.findViewById(R.id.tv_name);
+//        tvNim = view.findViewById(R.id.tv_nim);
+//
+//        tvName.setText(sharedPrefManager.getSPNama());
+//        tvNim.setText(sharedPrefManager.getSpNoinduk());
 
         tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override

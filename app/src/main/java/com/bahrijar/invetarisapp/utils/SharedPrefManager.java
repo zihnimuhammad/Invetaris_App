@@ -3,6 +3,8 @@ package com.bahrijar.invetarisapp.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+
 
 public class SharedPrefManager {
 
@@ -13,6 +15,10 @@ public class SharedPrefManager {
     public static final String SP_NOINDUK= "spNoInduk";
     public static final String SP_ROLE= "spRole";
     public static final String SP_KELAS= "spKelas";
+    public static final String SP_ID_KELAS= "spIdKelas";
+
+    // Laporan
+    public static final String SP_LAPORAN= "spLaporan";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
@@ -30,6 +36,8 @@ public class SharedPrefManager {
         spEditor.commit();
     }
 
+
+
     public void saveSPInt(String keySP, int value){
         spEditor.putInt(keySP, value);
         spEditor.commit();
@@ -46,6 +54,9 @@ public class SharedPrefManager {
     }
 
 
+    public String getSpIdKelas(){
+        return sp.getString(SP_ID_KELAS, "");
+    }
     public String getSPNama(){
         return sp.getString(SP_NAMA, "");
     }
@@ -56,6 +67,10 @@ public class SharedPrefManager {
 
     public String getSPRole(){
         return sp.getString(SP_ROLE, "");
+    }
+
+    public String getSpLaporan(){
+        return sp.getString(SP_LAPORAN, "");
     }
 
     public String getSPToken(){

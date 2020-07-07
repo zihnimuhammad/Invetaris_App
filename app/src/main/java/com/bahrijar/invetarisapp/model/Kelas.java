@@ -13,7 +13,7 @@ public class Kelas implements Parcelable {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("kode_ruangan")
     @Expose
     private String namaKelas;
@@ -28,11 +28,11 @@ public class Kelas implements Parcelable {
     @Expose
     private ArrayList<Barang> barang = null;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -73,11 +73,7 @@ public class Kelas implements Parcelable {
     }
 
     protected Kelas(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
+        id = in.readString();
         namaKelas = in.readString();
         lokasi = in.readString();
         kapasitas = in.readString();
@@ -102,12 +98,7 @@ public class Kelas implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        if (id == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(id);
-        }
+        parcel.writeString(id);
         parcel.writeString(namaKelas);
         parcel.writeString(lokasi);
         parcel.writeString(kapasitas);
