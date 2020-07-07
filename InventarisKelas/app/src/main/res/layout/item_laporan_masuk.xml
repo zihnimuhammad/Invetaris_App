@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/cv_laporan_masuk"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginHorizontal="@dimen/cardview_horizontal_margin"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingHorizontal="@dimen/cardview_horizontal_padding"
+        android:paddingVertical="@dimen/cardview_vertical_padding">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/kode_laporan"
+                android:text="@string/kode_laporan"
+                android:textSize="13sp"
+                android:fontFamily="@font/montserrat_semi_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lokasi_kelas"
+                android:text="Gedung AA"
+                android:textSize="10sp"
+                android:fontFamily="@font/montserrat_medium"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tgl_laporan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/tgl_laporan"
+            android:textSize="9sp" />
+
+        <ImageButton
+            android:layout_width="62dp"
+            android:layout_height="18dp"
+            android:src="@drawable/btn_tugaskan"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/beranda_menu"
+        android:icon="@drawable/ic_beranda"
+        android:title="Beranda"
+        />
+
+    <item
+        android:id="@+id/pinjaman_menu"
+        android:icon="@drawable/ic_compare_arrows_24px"
+        android:title="Pinjaman"
+        />
+
+    <item
+        android:id="@+id/laporan_menu"
+        android:icon="@drawable/ic_description_24px"
+        android:title="Laporan"
+        />
+
+    <item
+        android:id="@+id/akun_menu"
+        android:icon="@drawable/ic_person_24px"
+        android:title="Akun"
+        />
+
+</menu>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    android:gravity="center_vertical"
+    android:layout_gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:id="@+id/icon_barang"
+        android:src="@drawable/ic_meja"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:id="@+id/linearLayout1"
+        android:layout_toRightOf="@id/icon_barang"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nama_barang"
+            android:textSize="14sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/nama_barang"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jenismerk_barang"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_light"
+            android:text="@string/merk_jenis_barang"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/linearLayout1"
+        android:gravity="right"
+        android:layout_centerVertical="true">
+
+        <ImageButton
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/btn_minus"
+            android:src="@drawable/ic_btn_mines"
+            android:onClick="countDown"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/jumlah_barang"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/jumlah_barang" />
+        <ImageButton
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:id="@+id/btn_plus"
+            android:src="@drawable/ic_btn_plus"
+            android:layout_marginLeft="5dp"
+            android:onClick="countUp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

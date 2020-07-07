@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Inventaris Kelas</string>
+
+    <string name="beranda">Beranda</string>
+    <string name="pinjaman">Pinjaman</string>
+    <string name="laporan">Laporan</string>
+    <string name="akun">Akun</string>
+    <string name="nama_user">Djalil Pakualam</string>
+    <string name="role">Mahasiswa</string>
+    <string name="daftar_kelas">Daftar Kelas</string>
+    <string name="nama_kelas">Ruang AA 301</string>
+    <string name="orang">Orang</string>
+    <string name="kapasitas_kelas">20</string>
+    <string name="foto_kelas">Foto Kelas</string>
+    <string name="lokasi_kelas">Gedung AA</string>
+    <string name="daftar_barang">Daftar Barang di ruangan ini:</string>
+    <string name="lapor">LAPORKAN KERUSAKAN BARANG</string>
+    <string name="deskripsi">Deskripsi:</string>
+    <string name="nama_barang">Nama Barang</string>
+    <string name="merk_jenis_barang">Merk/Jenis barang</string>
+    <string name="jumlah_barang">20</string>
+    <string name="unit">Unit</string>
+    <string name="mulai">Mulai</string>
+    <string name="selesai">Selesai</string>
+    <string name="pinjam_barang">Pinjam Barang</string>
+    <string name="judul_notif">PEMINJAMAN BERHASIL!</string>
+    <string name="isi_notif">Kamu berhasil meminjam barang, beritahu admin nomor peminjaman kamu dibawah ini.</string>
+    <string name="hasil_notif">#ABC123</string>
+    <string name="buat_laporan">Buat Laporan</string>
+    <string name="dalam_peminjaman">Dalam Peminjaman</string>
+    <string name="nomor_peminjaman">Nomor Peminjaman</string>
+    <string name="kode_peminjaman">#P123</string>
+    <string name="nomor_laporan">Nomor Laporan</string>
+    <string name="tgl_peminjaman">22-Maret-2020</string>
+    <string name="tgl_laporan">22-Maret-2020</string>
+    <string name="sisa_durasi">120</string>
+    <string name="menit_tersisa">menit tersisa</string>
+    <string name="laporan_anda">Laporan Anda</string>
+    <string name="kode_laporan">#L123</string>
+    <string name="informasi_laporan">Informasi Laporan</string>
+    <string name="barang_yang_rusak">Barang yang rusak</string>
+    <string name="barang_yang_dipinjam">Barang yang dipinjam</string>
+    <string name="laporan_masuk">Laporan Masuk</string>
+    <string name="menetapkan_petugas">Menetapkan Petugas</string>
+    <string name="nomor_induk">4817080461</string>
+    <string name="enter_time">Enter Time</string>
+    <string-array name="usertype">
+        <item>mahasiswa</item>
+        <item>kajur</item>
+    </string-array>
+</resources>

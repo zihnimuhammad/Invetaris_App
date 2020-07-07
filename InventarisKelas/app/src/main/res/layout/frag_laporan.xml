@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_laporan">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_laporanku"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="@string/laporan_anda" />
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list_laporanku"
+        android:background="@drawable/bg_set_pinjam"
+        android:padding="10dp">
+    </ListView>
+
+</LinearLayout>

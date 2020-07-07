@@ -1,0 +1,2 @@
+-- btn plus and btn min --
+https://stackoverflow.com/questions/40144897/android-listview-simpleadapter-get-the-sum-of-each-rows-last-column-textview

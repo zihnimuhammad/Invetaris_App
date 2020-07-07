@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/toolbar_detail_laporan"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_back"
+            android:layout_marginLeft="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_clear_white_24dp"
+            android:background="@color/colorPrimary"
+            android:onClick="cancel"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="@string/informasi_laporan" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relative"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:paddingVertical="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_0"
+            android:text="ID Pelapor"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_1"
+            android:text="@string/nomor_laporan"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:textSize="14sp"
+            android:layout_below="@id/tv_0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lokasi_kelas"
+            android:layout_below="@+id/tv_1"
+            android:text="@string/lokasi_kelas"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="10sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nomor_induk"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/nomor_induk"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/kode_laporan"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/kode_laporan"
+            android:layout_below="@id/nomor_induk"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:textSize="14sp"
+        android:text="@string/barang_yang_rusak"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/lv_detail_laporan"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:id="@+id/foto_kerusakan1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_foto"/>
+        <ImageView
+            android:id="@+id/foto_kerusakan2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_foto"/>
+        <ImageView
+            android:id="@+id/foto_kerusakan3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_foto"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
